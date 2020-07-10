@@ -11,12 +11,17 @@ import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+/*
+    Classe para a entidade de Veículo que será manipulada na API
+*/
+
 @Entity
 public class Veiculo implements Serializable {
     private static final long serialVersionUID = 1L;
-   
+
+    // Propriedades
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
     private String veiculo;
@@ -25,18 +30,19 @@ public class Veiculo implements Serializable {
     private String descricao;
     private Boolean vendido;
 
-    public Veiculo(){
-
-    }
-
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm") // Formatação de data para exibição
     private Date created;
-    
+
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date updated;
 
-    public Veiculo(Integer id, String veiculo, String marca, Integer ano, String descricao, Boolean vendido, Date created,
-            Date updated) {
+    // Construtores
+    public Veiculo() {
+
+    }
+
+    public Veiculo(Integer id, String veiculo, String marca, Integer ano, String descricao, Boolean vendido,
+            Date created, Date updated) {
         Id = id;
         this.veiculo = veiculo;
         this.marca = marca;
@@ -47,6 +53,7 @@ public class Veiculo implements Serializable {
         this.updated = updated;
     }
 
+    // Getters e Setters
     public Integer getId() {
         return Id;
     }
@@ -111,9 +118,11 @@ public class Veiculo implements Serializable {
         this.updated = updated;
     }
 
-    public boolean validateName(List<String> validNames){
+    public boolean validateName(List<String> validNames) {
         return validNames.contains(marca);
     }
+
+    // Demais métodos (HashCode e equals) 
 
     @Override
     public int hashCode() {
@@ -139,9 +148,5 @@ public class Veiculo implements Serializable {
             return false;
         return true;
     }
-
-    
-    
-
 
 }
